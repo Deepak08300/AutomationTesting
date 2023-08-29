@@ -52,7 +52,7 @@ WebDriver webdriver;
 			   if (element.isDisplayed() && element.isEnabled()) {
 				   System.out.println("Testing 01- Button is clickable and is tested for its name");
 			       System.out.println(button);
-				   if(button.equals("Register Here")) {
+				   if(button.equals("Register")) {
 					  
 					   System.out.println("Testing 02- Button's name is correct navigating to next page");
 				   element.click();
