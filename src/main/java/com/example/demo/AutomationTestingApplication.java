@@ -4,12 +4,11 @@ import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
 @SpringBootApplication
 public class AutomationTestingApplication {
 	
@@ -46,15 +45,31 @@ System.out.println("enter the second stage");
 //	
 //System.out.println("enter the second stage56");
 ChromeOptions options = new ChromeOptions();
+//options.addArguments("--remote-allow-origins=*");
+//options.addArguments("C:\\Users\\91976\\Downloads\\chromedriver-win64");
+//WebDriverManager.chromedriver().setup();
+//WebDriver driver = new ChromeDriver(options);
+//driver.manage().window().maximize();
 options.addArguments("--remote-allow-origins=*");
-WebDriverManager.chromedriver().setup();
+System.setProperty("webdriver.chrome.driver", "C:\\Users\\91976\\Downloads\\chromedriver-win64\\chromedriver.exe");
 WebDriver driver = new ChromeDriver(options);
 driver.manage().window().maximize();
+driver.manage().deleteAllCookies();
 
-driver.get("https://www.youtube.com");
+driver.get("http://localhost:8080/");
 boolean present;
 try {
-   driver.findElement(By.id("logoutLink"));
+	
+   Boolean data = driver.findElements(By.xpath("/html/body/header/nav/ul/li[3]/div/a[2]")).isEmpty();
+   String button = driver.findElement(By.xpath("/html/body/div[2]/button")).getText();
+   System.out.println(button);
+//   WebDriverWait wait = new WebDriverWait(driver,6);
+//   wait.until(ExpectedConditions.elementToBeClickable(By.xpath("")));
+   WebElement element = driver.findElement(By.xpath("/html/body/div[2]/button"));
+   if (element.isDisplayed() && element.isEnabled()) {
+       element.click();
+   }
+   System.out.println(data);
    present = true;
 }catch (NoSuchElementException e) {
    present = false;
