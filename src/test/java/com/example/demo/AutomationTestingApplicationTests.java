@@ -52,14 +52,46 @@ WebDriver webdriver;
 			   if (element.isDisplayed() && element.isEnabled()) {
 				   System.out.println("Testing 01- Button is clickable and is tested for its name");
 			       System.out.println(button);
-				   if(button.equals("Register")) {
+				   if(button.equals("Register Here")) {
 					  
 					   System.out.println("Testing 02- Button's name is correct navigating to next page");
 				   element.click();
+				   String text1 = driver.findElement(By.xpath("/html/body/div[1]/div[1]/label")).getText();
+				   if(text1.equals("Username")) {
+					   System.out.println("Testing 03- Page is navigated and the new page has user name in it");
+				   }else {
+					   System.out.println("Error in Username");
+				   }
+				   String text2 = driver.findElement(By.xpath("/html/body/div[1]/div[2]/label")).getText();
+				   if(text2.equals("Email")) {
+					   System.out.println("Testing 04- Page is navigated and the new page has Email in it");
+				   }else {
+					   System.out.println("Error in Email");
+				   }
+				   String text3 = driver.findElement(By.xpath("/html/body/div[1]/div[3]/label")).getText();
+				   if(text3.equals("Password")) {
+					   System.out.println("Testing 05- Page is navigated and the new page has Password in it");
+				   }else {
+					   System.out.println(text3+"Error in Password");
+				   }
+				   String text4 = driver.findElement(By.xpath("/html/body/div[1]/div[4]/label")).getText();
+				   if(text4.equals("Confirm Password")) {
+					   System.out.println("Testing 06- Page is navigated and the new page has Confirm Password in it");
+				   }else {
+					   System.out.println("Error in Confirm Password");
+				   }
+				   String text5 = driver.findElement(By.xpath("/html/body/div[1]/button")).getText();
+				   if(text5.equals("Register")) {
+					   System.out.println("Testing 07- Page is navigated and the new page has button Register in it");
+				   }else {
+					   System.out.println("Error in Register button");
+				   }
 				   }else {
 					   System.out.println("Error- Button name is incorrect please check again");
 					   
 				   }
+				   
+
 			   }else {
 				   System.out.println("Button is not clickable or enabled please check again");
 			   }
@@ -67,10 +99,11 @@ WebDriver webdriver;
 			   present = true;
 			}catch (NoSuchElementException e) {
 			   present = false;
+			   System.out.println("Failes in exception");
 
 			}
 
-		driver. close();
+		driver.close();
 		System.out.println("Browser is closed");
 	}
 
